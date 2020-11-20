@@ -1,0 +1,12 @@
+server:
+  port: 10000
+
+spring:
+  application:
+    name: app-gateway
+
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:3000/eureka/

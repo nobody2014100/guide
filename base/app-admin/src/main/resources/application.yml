@@ -1,0 +1,19 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /app-admin
+spring:
+  application:
+    name: app-admin
+  cloud:
+
+eureka:
+  instance:
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+    hostname: 127.0.0.1
+    instance-id: ${spring.application.name}
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:3000/eureka/
