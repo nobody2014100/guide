@@ -1,6 +1,6 @@
 debug: false
 server:
-  port: 3000
+  port: 30000
 spring:
   application:
     name: app-admin

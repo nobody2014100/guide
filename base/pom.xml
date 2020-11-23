@@ -21,6 +21,7 @@
         <module>app-admin</module>
         <module>app-gateway</module>
         <module>app-register</module>
+        <module>app-user</module>
     </modules>
 
 </project>
