@@ -7,17 +7,19 @@ spring:
     name: app-user
   devtools:
     livereload:
-      port: 41000
+      port: 42000
+  jmx:
+    enabled: true
 eureka:
   instance:
-    statusPageUrlPath: /info
-    healthCheckUrlPath: /health
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
     hostname: 127.0.0.1
     instance-id: ${spring.application.name}
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:3000/eureka/
+      defaultZone: http://localhost:30000/eureka/
 management:
   server:
     port: 41000
@@ -28,9 +30,16 @@ management:
         time-to-live: 1000ms
     health:
       show-details: always
+    shutdown:
+      enabled: true
+    jolokia:
+      enabled: true
+      config:
+        debug: true
   endpoints:
     web:
       base-path: /actuator
       exposure:
         include: "*"
+
 #        exclude:

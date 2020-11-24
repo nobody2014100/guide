@@ -17,7 +17,7 @@ eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:3000/eureka/
+      defaultZone: http://localhost:30000/eureka/
 management:
   server:
     port: 9100

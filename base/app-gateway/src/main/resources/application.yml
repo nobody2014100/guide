@@ -1,12 +1,53 @@
 server:
-  port: 10000
+  port: 1000
 
 spring:
   application:
     name: app-gateway
+  cloud:
+    gateway:
+      default-filters:
+        - PrefixPath=/httpbin
+        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+  jmx:
+    enabled: true
 
 eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:3000/eureka/
+      defaultZone: http://localhost:30000/eureka/
+  instance:
+    instance-id: ${spring.application.name}
+    hostname: 127.0.0.1
+
+
+
+management:
+  server:
+    port: 11000
+  endpoint:
+    beans:
+      enabled: true
+      cache:
+        time-to-live: 1000ms
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+    jolokia:
+      enabled: true
+      config:
+        debug: true
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
