@@ -12,26 +12,27 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping
-    public ResponseEntity<HashMap> list() {
+    @GetMapping(produces = { "application/json;charset=UTF-8"} )
+    public ResponseEntity<Map> list() {
         List<UserVo> users = new ArrayList<>();
         for (int i =0; i< 10; i++) {
             users.add(generateUser(i));
         }
-        HashMap map = new HashMap();
+        Map<String, List<UserVo>> map = new HashMap();
         map.put("data", users );
         return ResponseEntity.ok(map);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<HashMap> get(@PathVariable(name = "id") Integer id) {
-        HashMap map = new HashMap();
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Map> get(@PathVariable(name = "id") Integer id) {
+        Map<String, UserVo> map = new HashMap();
         map.put("data", generateUser(id) );
         return ResponseEntity.ok(map);
     }

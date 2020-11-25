@@ -1,7 +1,7 @@
 server:
   port: 4000
-#  servlet:
-#    context-path: /app-user
+  servlet:
+    context-path: /app-user
 spring:
   application:
     name: app-user
@@ -41,5 +41,4 @@ management:
       base-path: /actuator
       exposure:
         include: "*"
-
-#        exclude:
+        exclude: env,beans
