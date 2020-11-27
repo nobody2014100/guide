@@ -1,15 +1,35 @@
 debug: false
-server:
-  port: 30000
 spring:
   application:
-    name: app-admin
+    name: ${APP_NAME:app-admin}
+  profiles:
+    active: local
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${HOST_NAME:localhost}
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+
+---
+spring:
+  profiles: local
+server:
+  port: ${APP_PORT:3000}
+
+---
+spring:
+  profiles: dev
+server:
+  port: ${APP_PORT:3000}
+
+
+---
+spring:
+  profiles: prod
+server:
+  port: ${APP_PORT:3000}

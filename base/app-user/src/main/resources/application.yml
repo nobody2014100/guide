@@ -1,28 +1,26 @@
 server:
-  port: 4000
   servlet:
     context-path: /app-user
 spring:
   application:
-    name: app-user
-  devtools:
-    livereload:
-      port: 42000
+    name: ${APP_NAME:appuser}
+  profiles:
+    active: local
   jmx:
     enabled: true
+  jackson:
+    time-zone: GMT+8
 eureka:
   instance:
     statusPageUrlPath: /actuator/info
     healthCheckUrlPath: /actuator/health
     hostname: 127.0.0.1
-    instance-id: ${spring.application.name}
+#    instance-id: ${spring.application.name}
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:30000/eureka/
+      defaultZone: http://${REGISTER_HOST_NAME:localhost}:${REGISTER_APP_PORT:3000}/eureka/
 management:
-  server:
-    port: 41000
   endpoint:
     beans:
       enabled: true
@@ -42,3 +40,45 @@ management:
       exposure:
         include: "*"
         exclude: env,beans
+logging:
+  config: classpath:logback-spring.xml
+
+
+
+
+---
+spring:
+  profiles: local
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:42000}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:41000}
+server:
+  port: ${APP_PORT:4000}
+
+---
+spring:
+  profiles: dev
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:42001}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:41001}
+server:
+  port: ${APP_PORT:4001}
+
+
+---
+spring:
+  profiles: prod
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:42002}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:41002}
+server:
+  port: ${APP_PORT:4002}

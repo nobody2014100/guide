@@ -21,6 +21,7 @@ public class UserController {
 
     @GetMapping(produces = { "application/json;charset=UTF-8"} )
     public ResponseEntity<Map> list() {
+        log.info("invoking list.....");
         List<UserVo> users = new ArrayList<>();
         for (int i =0; i< 10; i++) {
             users.add(generateUser(i));
@@ -31,7 +32,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Map> get(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<Map> detail(@PathVariable(name = "id") Integer id) {
+        log.info("invoking detail.....");
         Map<String, UserVo> map = new HashMap();
         map.put("data", generateUser(id) );
         return ResponseEntity.ok(map);

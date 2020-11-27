@@ -1,13 +1,11 @@
 server:
-  port: 9000
   servlet:
     context-path: /app-admin
 spring:
   application:
-    name: app-admin
-  devtools:
-    livereload:
-      port: 9200
+    name: ${APP_NAME:app-admin}
+  profiles:
+    active: local
 eureka:
   instance:
     statusPageUrlPath: /info
@@ -17,10 +15,9 @@ eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:30000/eureka/
+      defaultZone: http://${HOST_NAME:localhost}:3000/eureka/
+    enabled: true
 management:
-  server:
-    port: 9100
   endpoint:
     beans:
       enabled: true
@@ -34,3 +31,42 @@ management:
       exposure:
         include: "*"
 #        exclude:
+
+
+
+
+---
+spring:
+  profiles: local
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:9200}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:9100}
+server:
+  port: ${APP_PORT:9000}
+
+---
+spring:
+  profiles: dev
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:9200}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:9100}
+server:
+  port: ${APP_PORT:9000}
+
+---
+spring:
+  profiles: prod
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:9200}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:9100}
+server:
+  port: ${APP_PORT:9000}

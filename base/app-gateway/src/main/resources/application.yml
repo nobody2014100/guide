@@ -1,26 +1,53 @@
-server:
-  port: 1000
+test:
+  #  hostport: httpbin.org:80
+  #  hostport: localhost:5000
+  app-user-uri: http://127.0.0.1:4000
+  app-admin-uri: http://127.0.0.1:9000
+  app-user: lb://appuser
+  app-admin: lb://app-admin
 
 spring:
   application:
     name: app-gateway
+  profiles:
+    active: local
   cloud:
     gateway:
-#      default-filters:
-#        - PrefixPath=/app-user
-#        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
       routes:
       - id: app-admin-service
-        uri: http://127.0.0.1:4000/
+        uri: ${test.app-admin-uri}
         predicates:
-        - Path=/app-user/*
+        - Path=/app-admin/**
         filters:
         - name: RequestRateLimiter
           args:
-            redis-rate-limiter.replenishRate: 10
-            redis-rate-limiter.burstCapacity: 20
-            redis-rate-limiter.requestedTokens: 1
-
+            redis-rate-limiter.replenishRate: 3
+            redis-rate-limiter.burstCapacity: 10
+            redis-rate-limiter.requestedTokens: 60
+      - id: app-user-service
+        uri: ${test.app-user}
+        predicates:
+          - Path=/app-user/**
+        filters:
+          - name: RequestRateLimiter
+            args:
+              redis-rate-limiter.replenishRate: 3
+              redis-rate-limiter.burstCapacity: 10
+              redis-rate-limiter.requestedTokens: 60
+#      - id: myRoute
+#        uri: lb://service
+#        predicates:
+#          - Path=/service/**
+      filter:
+        request-rate-limiter:
+          deny-empty-key: false
+      # 全局corl配置
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://yitech.club"
+            allowedMethods:
+              - GET
   jmx:
     enabled: true
   redis:
@@ -33,7 +60,7 @@ eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:30000/eureka/
+      defaultZone: http://${HOST_NAME:localhost}:3000/eureka/
   instance:
     instance-id: ${spring.application.name}
     hostname: 127.0.0.1
@@ -41,13 +68,24 @@ eureka:
 
 
 management:
-  server:
-    port: 11000
+  trace:
+    http:
+      enabled: true
+      include:
+        - principal
+        - remote-address
+        - session-id
+        - time-taken
+        - cookie-headers
+  metrics:
+    enable:
+      jvm: true
+      hibernate: true
   endpoint:
     beans:
       enabled: true
       cache:
-        time-to-live: 1000ms
+        time-to-live: 30s
     health:
       show-details: always
     shutdown:
@@ -62,6 +100,7 @@ management:
       exposure:
         include: "*"
         exclude: env,beans
+
 logging:
   level:
     org.springframework.cloud.gateway: TRACE
@@ -69,3 +108,41 @@ logging:
     org.springframework.web.reactive: DEBUG
     reactor.ipc.netty: DEBUG
     reactor.netty: DEBUG
+
+
+---
+spring:
+  profiles: local
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:12000}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:11000}
+server:
+  port: ${APP_PORT:1000}
+
+---
+spring:
+  profiles: dev
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:12000}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:11000}
+server:
+  port: ${APP_PORT:1000}
+
+
+---
+spring:
+  profiles: prod
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:12000}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:11000}
+server:
+  port: ${APP_PORT:1000}
