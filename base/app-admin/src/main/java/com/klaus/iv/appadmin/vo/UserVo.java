@@ -1,4 +1,4 @@
-package com.klaus.iv.appuser.vo;
+package com.klaus.iv.appadmin.vo;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;

@@ -40,12 +40,25 @@ management:
       exposure:
         include: "*"
         exclude: env,beans
+
+
+
 logging:
   config: classpath:logback-spring.xml
 
 
 
-
+feign:
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: FULL  # BASIC, FULL, HEADERS, NONE
 ---
 spring:
   profiles: local

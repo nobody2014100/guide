@@ -40,24 +40,24 @@ spring:
   profiles: local
   devtools:
     livereload:
-      port: ${DEV_TOOLS_PORT:9200}
+      port: ${DEV_TOOLS_PORT:9201}
 management:
   server:
-    port: ${MANAGEMENT_PORT:9100}
+    port: ${MANAGEMENT_PORT:9101}
 server:
-  port: ${APP_PORT:9000}
+  port: ${APP_PORT:9001}
 
 ---
 spring:
   profiles: dev
   devtools:
     livereload:
-      port: ${DEV_TOOLS_PORT:9200}
+      port: ${DEV_TOOLS_PORT:9202}
 management:
   server:
-    port: ${MANAGEMENT_PORT:9100}
+    port: ${MANAGEMENT_PORT:9102}
 server:
-  port: ${APP_PORT:9000}
+  port: ${APP_PORT:9002}
 
 ---
 spring:
