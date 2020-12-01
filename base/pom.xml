@@ -22,6 +22,9 @@
         <module>app-admin</module>
         <module>app-gateway</module>
         <module>app-register</module>
+        <module>stock</module>
+        <module>yi-user</module>
+        <module>common</module>
     </modules>
 
 </project>

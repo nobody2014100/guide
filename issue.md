@@ -1,14 +1,40 @@
 # issue record
 
 
+##
+
+
+## Data source rejected establishment of connection,  message from server: "Too many connections"
+```
+show variables like "max_connections"; 
+ set GLOBAL max_connections=10000;
+ 
+ 在/etc/my.conf 添加如下内容
+ [mysqld]
+ max_connections=10000
+ max_user_connections=5000
+ wait_timeout=200
+
+```
+## 
+```
+CREATE USER 'guide'@'%' IDENTIFIED BY 'root';
+
+GRANT ALL PRIVILEGES ON *.* TO 'guide'@'%' IDENTIFIED BY 'Z..li1zh@u1!!' WITH GRANT OPTION;
+FLUSH   PRIVILEGES;
+
+
+```
 
 
 
 
 
+## Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
+```
 
 
-
+```
 
 
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+    <jdbc>
+        <driver>com.mysql.cj.jdbc.Driver</driver>
+        <url>jdbc:mysql://127.0.0.1:3306/guide?useUnicode=true&amp;allowMultiQueries=true&amp;useSSL=false&amp;characterEncoding=utf8&amp;serverTimezone=UTC</url>
+        <user>root</user>
+        <password>root</password>
+    </jdbc>
+
+    <!--<generator>-->
+        <!--<database>-->
+            <!--&lt;!&ndash;代码生成器&ndash;&gt;-->
+            <!--<name>org.jooq.meta.mysql.MySQLDatabase</name>-->
+            <!--&lt;!&ndash;数据库中的哪个库&ndash;&gt;-->
+            <!--<schemata>-->
+                <!--<schema>-->
+                    <!--<inputSchema>jooq</inputSchema>-->
+                <!--</schema>-->
+            <!--</schemata>-->
+            <!--&lt;!&ndash;数据库中需要生成的表&ndash;&gt;-->
+            <!--<includes>student</includes>-->
+            <!--&lt;!&ndash;数据库中要排除的表&ndash;&gt;-->
+            <!--<excludes></excludes>-->
+            <!--<forcedTypes></forcedTypes>-->
+            <!--<outputSchemaToDefault>true</outputSchemaToDefault>-->
+        <!--</database>-->
+
+        <!--<generate>-->
+            <!--&lt;!&ndash;是否生成dao和pojo&ndash;&gt;-->
+            <!--<daos>false</daos>-->
+            <!--<pojos>true</pojos>-->
+            <!--&lt;!&ndash;是否把数据库时间类型映射到java 8时间类型&ndash;&gt;-->
+            <!--<javaTimeTypes>true</javaTimeTypes>-->
+            <!--&lt;!&ndash;<interfaces>true</interfaces>&ndash;&gt;-->
+            <!--&lt;!&ndash;是否在生成的代码中添加spring注释，比如@Repository&ndash;&gt;-->
+            <!--<springAnnotations>false</springAnnotations>-->
+        <!--</generate>-->
+
+        <!--&lt;!&ndash;文件生成位置&ndash;&gt;-->
+        <!--<target>-->
+            <!--<packageName>cn.repository.jooq</packageName>-->
+            <!--<directory>src/main/java</directory>-->
+        <!--</target>-->
+    <!--</generator>-->
+</configuration>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+    <groupId>com.klaus.iv</groupId>
+        <artifactId>base</artifactId>
+        <version>${base.version}</version>
+    </parent>
+    <groupId>com.klaus.iv</groupId>
+    <artifactId>stock</artifactId>
+    <name>stock</name>
+    <version>${stock.version}</version>
+    <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <stock.version>0.0.1</stock.version>
+    </properties>
+
+    <modules>
+        <module>stock-api</module>
+        <module>stock-admin</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
+                <artifactId>stock-api</artifactId>
+                <version>${stock.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>
