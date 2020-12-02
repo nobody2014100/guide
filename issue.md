@@ -1,7 +1,11 @@
 # issue record
 
 
-##
+## springboot+jpa+mysql 生成的时间与实际时间不一致，相差14小时
+```
+在数据库连接url后添加参数 &serverTimezone=Asia/Shanghai 即可
+
+```
 
 
 ## Data source rejected establishment of connection,  message from server: "Too many connections"

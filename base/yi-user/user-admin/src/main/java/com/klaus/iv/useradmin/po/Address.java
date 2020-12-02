@@ -3,6 +3,7 @@ package com.klaus.iv.useradmin.po;
 import com.klaus.iv.commonjpa.po.BasePo;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 @ToString(callSuper = true)
 public class Address extends BasePo {
 
+    //@Column(columnDefinition = "")
     private String detail;
     private String street;
     private String city;

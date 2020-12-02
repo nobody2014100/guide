@@ -16,7 +16,9 @@
 
 
     <modules>
+        <module>common-base</module>
         <module>common-jpa</module>
+        <module>common-web</module>
     </modules>
 
 
@@ -24,9 +26,21 @@
         <dependencies>
             <dependency>
                 <groupId>com.klaus.iv</groupId>
+                <artifactId>common-base</artifactId>
+                <version>${base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
                 <artifactId>common-jpa</artifactId>
                 <version>${base.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
+                <artifactId>common-web</artifactId>
+                <version>${base.version}</version>
+            </dependency>
+
 
         </dependencies>
 

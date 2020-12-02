@@ -4,6 +4,8 @@ import com.klaus.iv.commonjpa.po.BasePo;
 import lombok.*;
 
 import javax.persistence.Entity;
+import java.util.Arrays;
+import java.util.Optional;
 
 @Data
 @Entity
@@ -28,6 +30,11 @@ public class User extends BasePo {
         private UserType(int value) {
             this.value = value;
         }
+
+        public static Optional<UserType> of(int value) {
+            return Arrays.stream(UserType.values()).filter(i -> i.value == value).findFirst();
+        }
+
     }
 
 }

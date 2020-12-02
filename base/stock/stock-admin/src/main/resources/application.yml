@@ -11,7 +11,7 @@ spring:
   jackson:
     time-zone: GMT+8
   datasource:
-    url: jdbc:mysql://${MYSQL_SERVER:212.129.238.215}:${MYSQL_PORT:8888}/guide
+    url: jdbc:mysql://${MYSQL_SERVER:212.129.238.215}:${MYSQL_PORT:8888}/guide?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
     username: guide
     password: Z..li1zh@u1!!
     hikari:

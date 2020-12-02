@@ -50,6 +50,28 @@
             <artifactId>common-jpa</artifactId>
             <version>${base.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.klaus.iv</groupId>
+            <artifactId>common-web</artifactId>
+            <version>${base.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.klaus.iv</groupId>
+            <artifactId>common-base</artifactId>
+            <version>${base.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+        </dependency>
+
+
+
+
+
+
+
 
 
     </dependencies>
