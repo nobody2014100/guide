@@ -14,9 +14,7 @@
     <description>Demo project for Spring Boot</description>
 
     <packaging>pom</packaging>
-    <properties>
-        <yi-user.version>0.0.1</yi-user.version>
-    </properties>
+
 
     <modules>
         <module>user-api</module>

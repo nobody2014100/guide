@@ -68,6 +68,15 @@ management:
 logging:
   config: classpath:logback-spring.xml
 
+yi:
+  swagger:
+    enabled: true
+    title: ${spring.application.name}-文档中心
+    description: this is stock-admin api documention
+    contact:
+      name: klaus
+      url: http://github.com/olderzhou
+      email: niklausjulie@gmail.com
 
 
 feign:

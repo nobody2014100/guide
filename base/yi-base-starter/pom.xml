@@ -3,33 +3,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <groupId>com.klaus.iv</groupId>
+        <groupId>com.klaus.iv</groupId>
         <artifactId>base</artifactId>
         <version>${base.version}</version>
     </parent>
     <groupId>com.klaus.iv</groupId>
-    <artifactId>stock</artifactId>
-    <name>stock</name>
-    <version>${stock.version}</version>
+    <artifactId>yi-base-starter</artifactId>
+    <version>${yi-base.version}</version>
+    <name>yi-base-starter</name>
     <description>Demo project for Spring Boot</description>
-
     <packaging>pom</packaging>
 
     <modules>
-        <module>stock-api</module>
-        <module>stock-admin</module>
+        <module>yi-log-starter</module>
+        <module>yi-swagger-starter</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.klaus.iv</groupId>
-                <artifactId>stock-api</artifactId>
-                <version>${stock.version}</version>
+                <artifactId>yi-log-starter</artifactId>
+                <version>${base.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
+                <artifactId>yi-swagger-starter</artifactId>
+                <version>${base.version}</version>
+            </dependency>
         </dependencies>
-
     </dependencyManagement>
 
 </project>

@@ -1,8 +1,11 @@
 package com.klaus.iv.stockadmin.service.impl;
 
-import com.klaus.iv.stockadmin.po.StockPo;
+import com.klaus.iv.stockadmin.converter.StockDtoConverter;
+import com.klaus.iv.stockadmin.converter.StockVoConverter;
+import com.klaus.iv.stockadmin.po.Stock;
 import com.klaus.iv.stockadmin.repo.StockRepo;
 import com.klaus.iv.stockadmin.service.StockService;
+import com.klaus.iv.stockapi.dto.StockDto;
 import com.klaus.iv.stockapi.vo.StockVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -24,17 +27,18 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public Page<StockVo> findPage(Pageable pageable) {
-        Page<StockPo> page = stockRepo.findAll(pageable);
-        List<StockVo> contents = page.getContent().stream().map(i -> i.convertor()).collect(Collectors.toList());
+        Page<Stock> page = stockRepo.findAll(pageable);
+        List<StockVo> contents = page.getContent().stream().map(i -> new StockVoConverter().converterFromEntity(i)).collect(Collectors.toList());
         Page<StockVo> stockVos = Page.empty();
         return stockVos;
+
     }
 
     @Override
     public StockVo findById(Long id) {
-        Optional<StockPo> stockPo = stockRepo.findById(id);
+        Optional<Stock> stockPo = stockRepo.findById(id);
         if (stockPo.isPresent()) {
-            return stockPo.get().convertor();
+            return new StockVoConverter().converterFromEntity(stockPo.get());
         }
         return null;
     }
@@ -45,11 +49,11 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public void save(StockVo stockVo) {
-        StockPo stockPo = new StockPo();
-        BeanUtils.copyProperties(stockVo, stockPo);
-//        BeanUtils.copyProperties(stockPo, stockVo);
-        log.info("stockPo is :{}, stockVo is :{}", stockPo, stockVo);
-        stockRepo.save(stockPo);
+    public void save(StockDto stockDto) {
+        Stock stock = new StockDtoConverter().converterFromDto(stockDto);
+//        Stock stock = new Stock();
+//        BeanUtils.copyProperties(stockDto, stock);
+        log.info("stock is :{}, stockDto is :{}", stock, stockDto);
+        stockRepo.save(stock);
     }
 }

@@ -1,11 +1,4 @@
-server:
-  servlet:
-    context-path: /user-admin
 spring:
-  application:
-    name: ${APP_NAME:user-admin}
-  profiles:
-    active: local
   jmx:
     enabled: true
   jackson:
@@ -31,39 +24,6 @@ spring:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
-
-eureka:
-  instance:
-    statusPageUrlPath: /actuator/info
-    healthCheckUrlPath: /actuator/health
-    hostname: 127.0.0.1
-  #    instance-id: ${spring.application.name}
-  client:
-    fetch-registry: true
-    service-url:
-      defaultZone: http://${REGISTER_HOST_NAME:localhost}:${REGISTER_APP_PORT:3000}/eureka/
-management:
-  endpoint:
-    beans:
-      enabled: true
-      cache:
-        time-to-live: 1000ms
-    health:
-      show-details: always
-    shutdown:
-      enabled: true
-    jolokia:
-      enabled: true
-      config:
-        debug: true
-  endpoints:
-    web:
-      base-path: /actuator
-      exposure:
-        include: "*"
-        exclude: env,beans
-
-
 
 logging:
   config: classpath:logback-spring.xml

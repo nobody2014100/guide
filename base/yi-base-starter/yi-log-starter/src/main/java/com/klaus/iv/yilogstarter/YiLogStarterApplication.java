@@ -1,13 +1,13 @@
-package com.klaus.iv.stockapi;
+package com.klaus.iv.yilogstarter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StockApiApplication {
+public class YiLogStarterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(StockApiApplication.class, args);
+        SpringApplication.run(YiLogStarterApplication.class, args);
     }
 
 }

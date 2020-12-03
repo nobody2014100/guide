@@ -8,8 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GroupPo extends BasePo {
-    private String name;
-    private String code;
-    private String groupDesc;
+public class StockGroup extends BasePo {
+    private String stockCode;
+    private String groupCode;
+    // snapshot info
+    private Long price;
+    private String comments;
+
 }

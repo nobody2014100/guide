@@ -1,9 +1,9 @@
 package com.klaus.iv.stockadmin.repo;
 
-import com.klaus.iv.stockadmin.po.StockPo;
+import com.klaus.iv.stockadmin.po.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StockRepo extends JpaRepository<StockPo ,Long > {
+public interface StockRepo extends JpaRepository<Stock,Long > {
 
 
 }

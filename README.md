@@ -17,11 +17,6 @@ mvn clean install -DskipTests
 
 ```
 
-## archive
-
-## visit
-
-
 ## TODO 
 * 配置加密功能
 * 链路追踪
@@ -30,6 +25,7 @@ mvn clean install -DskipTests
 * 监控中心
 * 前端页面编写
 * 核心业务梳理
+* 审计日志
 
 
 ## process
@@ -38,4 +34,19 @@ mvn clean install -DskipTests
 * jooq 融合
 * redis 融合
 * mysql 融合
+* swagger 融合
+
+
+## 工程化
+### 架构设计
+### 模块说明
+### CICD
+```
+https://docs.gocd.org/current/
+
+docker run -d -p8153:8153 -p8154:8154 gocd/gocd-server:v20.10.0
+docker run -d -e GO_SERVER_URL=... gocd/gocd-agent-alpine-3.10:v20.10.0
+
+
+```
 
