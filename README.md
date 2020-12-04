@@ -38,8 +38,19 @@ mvn clean install -DskipTests
 
 
 ## 工程化
+
+
 ### 架构设计
+
+
 ### 模块说明
+- 注册中心
+- 网关
+- 用户后台
+- 权限认证
+- 股票管理后台
+- 股票数据爬取
+
 ### CICD
 ```
 https://docs.gocd.org/current/

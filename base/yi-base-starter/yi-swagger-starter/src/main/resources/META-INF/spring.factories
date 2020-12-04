@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.klaus.iv.yiswaggerstarter.config.SwaggerAutoConfiguration
+com.klaus.iv.yiswaggerstarter.config.YiSwaggerAutoConfiguration

@@ -1,34 +1,34 @@
 package com.klaus.iv.stockadmin.converter;
 
 import com.klaus.iv.commonbase.converter.Converter;
-import com.klaus.iv.stockadmin.po.Stock;
+import com.klaus.iv.stockadmin.po.YiStock;
 import com.klaus.iv.stockapi.dto.StockDto;
 import org.springframework.beans.BeanUtils;
 
 import java.util.function.Function;
 
 
-public class StockDtoConverter extends Converter<StockDto, Stock> {
+public class StockDtoConverter extends Converter<StockDto, YiStock> {
     public StockDtoConverter() {
         super(new StockDtoFunction(), new StockFunction() );
     }
 
-    static class StockDtoFunction implements Function<StockDto, Stock> {
+    static class StockDtoFunction implements Function<StockDto, YiStock> {
         @Override
-        public Stock apply(StockDto stockDto) {
+        public YiStock apply(StockDto stockDto) {
             // 可定制需要复制的属性
-            Stock stock = new Stock();
-            BeanUtils.copyProperties(stockDto, stock);
-            return stock;
+            YiStock yiStock = new YiStock();
+            BeanUtils.copyProperties(stockDto, yiStock);
+            return yiStock;
         }
     }
 
-    static class StockFunction implements Function<Stock, StockDto> {
+    static class StockFunction implements Function<YiStock, StockDto> {
         @Override
-        public StockDto apply(Stock stock) {
+        public StockDto apply(YiStock yiStock) {
             // 可定制需要复制的属性
             StockDto stockDto = new StockDto();
-            BeanUtils.copyProperties(stock, stockDto);
+            BeanUtils.copyProperties(yiStock, stockDto);
             return stockDto;
         }
     }

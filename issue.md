@@ -1,6 +1,13 @@
 # issue record
 
 
+## OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with data
+```
+
+
+
+```
+
 ## springboot+jpa+mysql 生成的时间与实际时间不一致，相差14小时
 ```
 在数据库连接url后添加参数 &serverTimezone=Asia/Shanghai 即可

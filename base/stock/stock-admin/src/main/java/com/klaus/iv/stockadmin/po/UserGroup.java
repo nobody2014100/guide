@@ -11,11 +11,8 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-public class StockGroup extends BasePo {
-    private String stockCode;
-    private String groupCode;
-    // snapshot info
-    private Long price;
+public class UserGroup extends BasePo {
+    private Long userId;
+    private Long groupId;
     private String addComments;
-
 }

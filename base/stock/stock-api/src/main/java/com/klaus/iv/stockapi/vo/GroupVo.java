@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "股票实体VO")
-public class StockVo {
+@ApiModel(value = "分组实体VO")
+public class GroupVo {
     @ApiModelProperty(name = "name", dataType = "String", value = "中金股份")
     private String name;
     @ApiModelProperty(name = "code", dataType = "String", value = "600787")
     private String code;
-    @ApiModelProperty(name = "stockDesc", dataType = "String", value = "中金公司, A股市场第一的券商")
-    private String stockDesc;
+    @ApiModelProperty(name = "groupDesc", dataType = "String", value = "麒麟才子，刘毅大神的分组")
+    private String groupDesc;
 
 }

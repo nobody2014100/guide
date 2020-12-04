@@ -77,7 +77,11 @@ yi:
       name: klaus
       url: http://github.com/olderzhou
       email: niklausjulie@gmail.com
-
+knife4j:
+  basic:
+    enable: true
+    username: klaus
+    password: K11@us213qwe
 
 feign:
   okhttp:

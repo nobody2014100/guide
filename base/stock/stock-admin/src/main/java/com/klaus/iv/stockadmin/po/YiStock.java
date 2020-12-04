@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-public class Stock extends BasePo {
+public class YiStock extends BasePo {
     private String name;
     private String code;
     private String stockDesc;

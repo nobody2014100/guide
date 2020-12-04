@@ -2,6 +2,7 @@ package com.klaus.iv.yiswaggerstarter.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import com.google.common.collect.Lists;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -33,7 +34,7 @@ import java.util.stream.Collectors;
 @EnableKnife4j
 @Import(BeanValidatorPluginsConfiguration.class)
 @Slf4j
-public class SwaggerAutoConfiguration implements BeanFactoryAware {
+public class YiSwaggerAutoConfiguration implements BeanFactoryAware {
     private static final String AUTH_KEY = "Authorization";
 
     private BeanFactory beanFactory;
@@ -157,6 +158,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
 //                .globalOperationParameters(buildGlobalOperationParametersFromSwaggerProperties(
 //                        swaggerProperties.getGlobalOperationParameters()))
                 .select()
+                //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .apis(RequestHandlerSelectors.basePackage(swaggerProperties.getBasePackage()))
                 .paths(PathSelectors.any())
 //                .paths(pathSelector.and(Predicates.not(Predicates.or(excludePath)), Predicates.or(basePath)))

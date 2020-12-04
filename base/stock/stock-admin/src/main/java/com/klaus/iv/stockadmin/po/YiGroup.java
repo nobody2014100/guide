@@ -1,14 +1,17 @@
 package com.klaus.iv.stockadmin.po;
 
 import com.klaus.iv.commonjpa.po.BasePo;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import javax.persistence.Entity;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Group extends BasePo {
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@Entity
+public class YiGroup extends BasePo {
     private String name;
     private String code;
     private String groupDesc;
