@@ -4,7 +4,7 @@ spring:
   jackson:
     time-zone: GMT+8
   datasource:
-    url: jdbc:mysql://${MYSQL_SERVER:212.129.238.215}:${MYSQL_PORT:8888}/guide?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://${MYSQL_SERVER:212.129.238.215}:${MYSQL_PORT:8888}/user_center?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
     username: guide
     password: Z..li1zh@u1!!
     hikari:
@@ -24,6 +24,8 @@ spring:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
+  jooq:
+    sql-dialect: mariadb
 
 logging:
   config: classpath:logback-spring.xml

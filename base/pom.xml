@@ -18,6 +18,7 @@
     </properties>
 
     <modules>
+        <module>codegen</module>
         <module>common</module>
         <module>yi-base-starter</module>
         <module>app-user</module>
@@ -26,6 +27,7 @@
         <module>app-register</module>
         <module>stock</module>
         <module>yi-user</module>
+        <module>yi-learn</module>
     </modules>
 
 </project>

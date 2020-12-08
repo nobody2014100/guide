@@ -1,9 +1,13 @@
 package com.klaus.iv.useradmin.po;
 
-import com.klaus.iv.commonjpa.po.BasePo;
-import lombok.*;
+import com.klaus.iv.commonjpa.po.BaseSnapshotPo;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 
@@ -13,7 +17,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class Address extends BasePo {
+public class Address extends BaseSnapshotPo {
 
     //@Column(columnDefinition = "")
     private String detail;

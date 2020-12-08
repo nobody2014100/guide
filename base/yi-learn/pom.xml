@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.klaus.iv</groupId>
+        <artifactId>base</artifactId>
+        <version>${base.version}</version>
+    </parent>
+    <groupId>com.klaus.iv</groupId>
+    <artifactId>yi-learn</artifactId>
+    <version>${yi-learn.version}</version>
+    <name>yi-learn</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
+    <modules>
+        <module>learn-admin</module>
+        <module>learn-api</module>
+        <module>learn-app</module>
+    </modules>
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
+                <artifactId>learn-app</artifactId>
+                <version>${learn-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
+                <artifactId>learn-api</artifactId>
+                <version>${learn-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
+                <artifactId>learn-admin</artifactId>
+                <version>${yi-learn.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

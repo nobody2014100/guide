@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 @ToString(callSuper = true)
 @Entity
 public class YiGroup extends BasePo {
+    public static final String CODE_DEFAULT = "self_choose";
+
     private String name;
     private String code;
     private String groupDesc;

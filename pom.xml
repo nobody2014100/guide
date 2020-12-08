@@ -18,11 +18,13 @@
     <properties>
         <app.version>0.0.1</app.version>
         <yi-user.version>0.0.1</yi-user.version>
+        <yi-learn.version>0.0.1</yi-learn.version>
         <yi-base.version>0.0.1</yi-base.version>
         <stock.version>0.0.1</stock.version>
         <java.version>1.8</java.version>
         <spring.cloud-version>Hoxton.SR6</spring.cloud-version>
         <docker.image.prefix>klaus</docker.image.prefix>
+        <yogurt.version>2.0.1-SNAPSHOT</yogurt.version>
     </properties>
 
     <dependencies>

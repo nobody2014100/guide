@@ -1,0 +1,133 @@
+server:
+  servlet:
+    context-path: /learn-admin
+spring:
+  application:
+    name: ${APP_NAME:learn-admin}
+  profiles:
+    active: local
+  jmx:
+    enabled: true
+  jackson:
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://${MYSQL_SERVER:212.129.238.215}:${MYSQL_PORT:8888}/learn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    username: guide
+    password: Z..li1zh@u1!!
+    hikari:
+      pool-name: ${spring.application.name}-pool
+      maximum-pool-size: 20
+      minimum-idle: 3
+      max-lifetime: 30000
+      connection-test-query: select 1
+  redis:
+    host: 111.231.215.20
+    port: 7777
+    database: 0
+    password: C..liizhou1!!
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+
+eureka:
+  instance:
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
+    hostname: 127.0.0.1
+  #    instance-id: ${spring.application.name}
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${REGISTER_HOST_NAME:localhost}:${REGISTER_APP_PORT:3000}/eureka/
+management:
+  endpoint:
+    beans:
+      enabled: true
+      cache:
+        time-to-live: 1000ms
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+    jolokia:
+      enabled: true
+      config:
+        debug: true
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+        exclude: env,beans
+
+
+
+logging:
+  config: classpath:logback-spring.xml
+
+yi:
+  swagger:
+    enabled: true
+    title: ${spring.application.name}-文档中心
+    description: this is learn-admin api documention
+    contact:
+      name: klaus
+      url: http://github.com/olderzhou
+      email: niklausjulie@gmail.com
+knife4j:
+  basic:
+    enable: true
+    username: klaus
+    password: K11@us213qwe
+
+feign:
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: FULL  # BASIC, FULL, HEADERS, NONE
+
+---
+spring:
+  profiles: local
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:52000}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:51000}
+server:
+  port: ${APP_PORT:5000}
+
+---
+spring:
+  profiles: dev
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:52001}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:51001}
+server:
+  port: ${APP_PORT:5001}
+
+
+---
+spring:
+  profiles: prod
+  devtools:
+    livereload:
+      port: ${DEV_TOOLS_PORT:52002}
+management:
+  server:
+    port: ${MANAGEMENT_PORT:51002}
+server:
+  port: ${APP_PORT:5002}

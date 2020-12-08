@@ -43,6 +43,14 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
+    public List<StockVo> findByUserIdAndGroupId(Long userId, Long groupId) {
+
+
+
+        return null;
+    }
+
+    @Override
     public void deleteById(Long id) {
         stockRepo.deleteById(id);
     }

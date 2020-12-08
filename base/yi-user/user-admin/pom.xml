@@ -79,6 +79,49 @@
 
     <build>
         <plugins>
+            <!-- jooq code generate plugin-->
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-mysql</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jdbc>
+                        <!-- 数据库相关配置 -->
+                        <driver>com.mysql.cj.jdbc.Driver</driver>
+                        <url>jdbc:mysql://212.129.238.215:8888/learn?characterEncoding=utf8</url>
+                        <username>guide</username>
+                        <password>Z..li1zh@u1!!</password>
+                    </jdbc>
+                    <generator>
+                        <database>
+                            <!-- 数据库的基本信息 -->
+                            <name>org.jooq.meta.mysql.MySQLDatabase</name>
+                            <includes>.*</includes>
+                            <excludes></excludes>
+                            <inputSchema>user_center</inputSchema>
+                        </database>
+                        <generate>
+                            <deprecated>false</deprecated>
+                            <instanceFields>true</instanceFields>
+                            <pojos>true</pojos>
+                        </generate>
+                        <target>
+                            <!-- 自动生成的类的包名，以及路径 -->
+                            <packageName>com.klaus.iv.useradmin.db</packageName>
+                            <directory>src/main/java</directory>
+                        </target>
+                    </generator>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

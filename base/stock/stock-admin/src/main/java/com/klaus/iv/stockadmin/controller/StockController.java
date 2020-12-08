@@ -38,6 +38,14 @@ public class StockController extends BaseController {
         return R.suc(stockService.findById(id));
     }
 
+    @GetMapping("/user/{id}/{groupid}")
+    @ApiOperation(value = "获取用户股票")
+    @ApiImplicitParam(name = "id", value = "请传递一个股票ID参数",required = true, dataTypeClass = Integer.class, paramType = "path")
+    public ResponseEntity<R> findByUserID(@RequestParam("userId") Long userId, @RequestParam("groupId") Long groupId) {
+        log.info("userId is:{}, groupId is :{}", userId, groupId);
+        return R.suc(stockService.findByUserIdAndGroupId(userId, groupId));
+    }
+
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除股票")
     @ApiImplicitParam(name = "id", value = "请传递一个股票ID参数",required = true, dataTypeClass = Integer.class, paramType = "path")

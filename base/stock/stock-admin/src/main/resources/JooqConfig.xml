@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configuration>
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.11.0.xsd">
+    <logging>WARN</logging>
+    <!--数据库配置信息-->
     <jdbc>
-        <driver>com.mysql.cj.jdbc.Driver</driver>
-        <url>jdbc:mysql://127.0.0.1:3306/guide?useUnicode=true&amp;allowMultiQueries=true&amp;useSSL=false&amp;characterEncoding=utf8&amp;serverTimezone=UTC</url>
-        <user>root</user>
-        <password>root</password>
+        <driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;rewriteBatchedStatements=TRUE&amp;useSSL=false&amp;serverTimezone=UTC</url>
+        <user>guide</user>
+        <password>Z..li1zh@u1!!</password>
     </jdbc>
+    <generator>
+        <strategy>
+            <name>com.github.yogurt.cg.JooqGeneratorStrategy</name>
+        </strategy>
+        <database>
+            <name>org.jooq.meta.mysql.MySQLDatabase</name>
+            <!--表名-->
+            <includes>learn</includes>
+            <!--数据库名-->
+            <inputSchema>test</inputSchema>
+            <outputSchemaToDefault>true</outputSchemaToDefault>
+            <forcedTypes>
+                <forcedType>
+                    <name>BOOLEAN</name>
+                    <expression>is_deleted</expression>
+                </forcedType>
 
-    <!--<generator>-->
-        <!--<database>-->
-            <!--&lt;!&ndash;代码生成器&ndash;&gt;-->
-            <!--<name>org.jooq.meta.mysql.MySQLDatabase</name>-->
-            <!--&lt;!&ndash;数据库中的哪个库&ndash;&gt;-->
-            <!--<schemata>-->
-                <!--<schema>-->
-                    <!--<inputSchema>jooq</inputSchema>-->
-                <!--</schema>-->
-            <!--</schemata>-->
-            <!--&lt;!&ndash;数据库中需要生成的表&ndash;&gt;-->
-            <!--<includes>student</includes>-->
-            <!--&lt;!&ndash;数据库中要排除的表&ndash;&gt;-->
-            <!--<excludes></excludes>-->
-            <!--<forcedTypes></forcedTypes>-->
-            <!--<outputSchemaToDefault>true</outputSchemaToDefault>-->
-        <!--</database>-->
+                <!-- 如果有枚举类型，需要手动设置Enum相关信息 -->
+                <forcedType>
+                    <enumConverter>true</enumConverter>
+                    <userType>com.klaus.iv.stockadmin.enums.TypeEnum</userType>
+                    <!--匹配某表某列-->
+                    <expression>.*\.test\.type</expression>
+                    <types>.*</types>
+                </forcedType>
+            </forcedTypes>
+        </database>
 
-        <!--<generate>-->
-            <!--&lt;!&ndash;是否生成dao和pojo&ndash;&gt;-->
-            <!--<daos>false</daos>-->
-            <!--<pojos>true</pojos>-->
-            <!--&lt;!&ndash;是否把数据库时间类型映射到java 8时间类型&ndash;&gt;-->
-            <!--<javaTimeTypes>true</javaTimeTypes>-->
-            <!--&lt;!&ndash;<interfaces>true</interfaces>&ndash;&gt;-->
-            <!--&lt;!&ndash;是否在生成的代码中添加spring注释，比如@Repository&ndash;&gt;-->
-            <!--<springAnnotations>false</springAnnotations>-->
-        <!--</generate>-->
-
-        <!--&lt;!&ndash;文件生成位置&ndash;&gt;-->
-        <!--<target>-->
-            <!--<packageName>cn.repository.jooq</packageName>-->
-            <!--<directory>src/main/java</directory>-->
-        <!--</target>-->
-    <!--</generator>-->
+        <target>
+            <!--包名-->
+            <packageName>com.klaus.iv.stockadmin</packageName>
+            <directory>src/main/java</directory>
+            <!--是否删除文件夹中已有文件-->
+            <clean>false</clean>
+        </target>
+        <generate>
+            <daos>true</daos>
+            <records>false</records>
+            <globalObjectReferences>false</globalObjectReferences>
+            <generatedAnnotation>false</generatedAnnotation>
+            <indexes>false</indexes>
+            <relations>false</relations>
+            <tables>false</tables>
+            <javaTimeTypes>true</javaTimeTypes>
+        </generate>
+    </generator>
 </configuration>
