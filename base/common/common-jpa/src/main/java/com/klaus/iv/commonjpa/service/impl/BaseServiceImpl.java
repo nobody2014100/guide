@@ -1,5 +1,6 @@
 package com.klaus.iv.commonjpa.service.impl;
 
+import com.klaus.iv.commonbase.model.dto.BaseDto;
 import com.klaus.iv.commonbase.model.vo.BaseVo;
 import com.klaus.iv.commonjpa.po.BasePo;
 import com.klaus.iv.commonjpa.repo.BaseRepo;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -31,19 +33,47 @@ public abstract class BaseServiceImpl<T extends BasePo, E> implements BaseServic
     }
 
     @Override
-    public void update(T po) {
-        baseRepo.save(po);
+    public void update(T entity) {
+        baseRepo.save(entity);
     }
 
     @Override
-    public <R extends BaseVo> Page<R> list(Pageable pageable) {
-        Page<T> page =  baseRepo.findAll(pageable);
-        List<R> data = (List<R>) page.getContent().stream().map(item -> converterVo(item)).collect(Collectors.toList());
-        return new PageImpl<R>(data,pageable, page.getTotalElements());
+    public <D extends BaseDto> void save(D dto) {
+        baseRepo.save(converterToEntity(dto));
     }
 
-    public abstract <R extends BaseVo> R converterVo(T t);
+    @Override
+    public <D extends BaseDto> void update(D dto) {
+        baseRepo.save(converterToEntity(dto));
+    }
 
+    @Override
+    public void deleteById(E id) {
+        baseRepo.deleteById(id);
+    }
 
+    @Override
+    public <V extends BaseVo> V findById(E id) {
+        Optional<T> tOptional = baseRepo.findById(id);
+        if (tOptional.isPresent()) {
+            return converterToVo(tOptional.get());
+        }
+        return null;
+    }
 
+    @Override
+    public <V extends BaseVo> Page<V> findAllWithPage(Pageable pageable) {
+        Page<T> page =  baseRepo.findAll(pageable);
+        List<V> data = page.getContent().stream().map(item -> (V) converterToVo(item)).collect(Collectors.toList());
+        return new PageImpl<V>(data,pageable, page.getTotalElements());
+    }
+
+    @Override
+    public Page<T> listAllWithPage(Pageable pageable) {
+        return   baseRepo.findAll(pageable);
+    }
+
+    public abstract <V extends BaseVo> V converterToVo(T t);
+
+    public abstract <D extends BaseDto> T converterToEntity(D dto);
 }

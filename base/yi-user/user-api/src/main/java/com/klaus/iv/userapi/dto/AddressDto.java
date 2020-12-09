@@ -10,13 +10,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class UserDto extends BaseDto {
+public class AddressDto extends BaseDto {
 
-    private String username;
-    private String openID;
-    private String password;
+    private String detail;
+    private String street;
+    private String city;
+    private String province;
+    private String country;
+    private String zipCode;
     private String mobile;
-    private String email;
-    private int userType;
+    private String fixTelephone;
+    private int addressType;
 
 }

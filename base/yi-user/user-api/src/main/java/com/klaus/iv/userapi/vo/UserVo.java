@@ -1,6 +1,7 @@
 package com.klaus.iv.userapi.vo;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.klaus.iv.commonbase.model.vo.BaseVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,6 +15,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @ApiModel("UserVo")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class UserVo extends BaseVo {
     @ApiModelProperty(name = "username", value = "zhangsan", notes = "名称")
     private String username;

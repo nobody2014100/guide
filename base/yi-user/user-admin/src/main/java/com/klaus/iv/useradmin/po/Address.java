@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import java.util.Arrays;
+import java.util.Optional;
 
 
 @Data
@@ -36,6 +38,10 @@ public class Address extends BaseSnapshotPo {
         private int value;
         private AddressType(int value) {
             this.value = value;
+        }
+
+        public static Optional<Address.AddressType> of(int value) {
+            return Arrays.stream(Address.AddressType.values()).filter(i -> i.value == value).findFirst();
         }
     }
 
