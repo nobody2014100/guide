@@ -54,7 +54,7 @@ spring:
     host: 111.231.215.20
     port: 7777
     database: 0
-    password: C..liizhou1!!
+    password: ENC(EY7Y4OEBEg5n/nZdeNYO1FEBAbGWrehdKyTzHNak3g3zRLFxw0BWajW6TDz0JX/K)
 
 eureka:
   client:

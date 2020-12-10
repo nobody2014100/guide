@@ -1,9 +1,9 @@
 package com.klaus.iv.useradmin.repo;
 
-import com.klaus.iv.useradmin.po.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.klaus.iv.commonjpa.repo.BaseRepo;
+import com.klaus.iv.useradmin.po.UserAddress;
 
-public interface UserAddressRepo extends JpaRepository<User, Long> {
+public interface UserAddressRepo extends BaseRepo<UserAddress, Long> {
 
 
 

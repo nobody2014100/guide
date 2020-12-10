@@ -50,6 +50,8 @@
 
     <logger name="org.springframework" level="info"/>
     <logger name="com.klaus.iv" level="debug"/>
+    <logger name="org.jooq" level="info"/>
+    <logger name="org.jooq.tools.LoggerListener" level="debug"/>
 
     <springProfile name="prod">
         <root level="error">

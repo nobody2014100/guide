@@ -1,6 +1,16 @@
 # issue record
 
 
+## jooq 生存的sql带双引号
+```
+    @PostConstruct
+    private void init() {
+        //		去掉sql中的单引号
+        dsl.settings().withRenderNameStyle(RenderNameStyle.AS_IS);
+    }
+```
+
+
 ## OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with data
 ```
 
@@ -13,7 +23,18 @@
 在数据库连接url后添加参数 &serverTimezone=Asia/Shanghai 即可
 
 ```
+## you have not installed the Java Cryptography Extension (JCE)
+```hql
+https://blog.csdn.net/andyguan01_2/article/details/88343641
 
+1、打开以下网址，下载JCE压缩包：
+http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+2、将压缩包解压，local_policy.jar和US_export_policy.jar这两个jar包放到$JAVA_HOME/jre/lib/security目录。因为目录下已有这两个文件，可以先备份，再覆盖。
+
+mv $JAVA_HOME/jre/lib/security/local_policy.jar $JAVA_HOME/jre/lib/security/local_policy.jar.bak
+mv $JAVA_HOME/jre/lib/security/US_export_policy.jar $JAVA_HOME/jre/lib/security/US_export_policy.jar.bak
+cp local_policy.jar US_export_policy.jar $JAVA_HOME/jre/lib/security
+```
 
 ## Data source rejected establishment of connection,  message from server: "Too many connections"
 ```

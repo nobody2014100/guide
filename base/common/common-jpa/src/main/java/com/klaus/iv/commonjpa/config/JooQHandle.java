@@ -1,21 +1,23 @@
-package com.klaus.iv.commonjpa.handle;
+package com.klaus.iv.commonjpa.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jooq.DSLContext;
 import org.jooq.conf.RenderNameStyle;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.PostConstruct;
-
+@Slf4j
+//@Component
 public class JooQHandle {
 
     protected static final String ALIAS = "t";
 
-    @Autowired
+//    @Autowired
     protected DSLContext dsl;
 
-    @PostConstruct
+//    @PostConstruct
     private void init() {
+        log.info("------------------ invoke JooQHandle .............");
         //		去掉sql中的单引号
         dsl.settings().withRenderNameStyle(RenderNameStyle.AS_IS);
+//        dsl.settings().setRenderNameStyle(RenderNameStyle.AS_IS);
     }
 }

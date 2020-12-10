@@ -21,9 +21,9 @@ mvn clean install -DskipTests
 * 配置加密功能
 * 链路追踪
 * nacos 配置中心
-* nacos 注册中心
 * 监控中心
 * 前端页面编写
+* nacos 注册中心
 * 核心业务梳理
 * 审计日志
 
