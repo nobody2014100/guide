@@ -55,8 +55,4 @@ public class RoleController extends BaseController {
         return R.suc();
     }
 
-
-
-
-
 }

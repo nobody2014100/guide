@@ -4,9 +4,9 @@ spring:
   jackson:
     time-zone: GMT+8
   datasource:
-    url: jdbc:mysql://${MYSQL_SERVER:212.129.238.215}:${MYSQL_PORT:8888}/user_center?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
-    #username: guide
-    #password: Z..li1zh@u1!!
+    url: jdbc:mysql://${MYSQL_SERVER:127.0.0.1}:${MYSQL_PORT:8888}/user_center?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+#    username: guide
+#    password: Z..li1zh@u1!!
     username: ENC(uSpU5irKuvMIT1mR0/2Whgh3EY9dRKwNKkZBNh2z20h4T8Le8SGPYBzC957M0hGS)
     password: ENC(Y5xuHdnuK897yMFWFJQA3ZFT7+Z4YCVvnp/st/SlgNw54YmOpD0qIYFBcmLry2Ks)
     hikari:
@@ -19,7 +19,7 @@ spring:
     host: 111.231.215.20
     port: 7777
     database: 0
-    #password: C..liizhou1!!
+#    password: C..liizhou1!!
     password: ENC(EY7Y4OEBEg5n/nZdeNYO1FEBAbGWrehdKyTzHNak3g3zRLFxw0BWajW6TDz0JX/K)
   jpa:
     show-sql: true
@@ -35,17 +35,7 @@ logging:
 
 
 
-feign:
-  okhttp:
-    enabled: true
-  hystrix:
-    enabled: true
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: FULL  # BASIC, FULL, HEADERS, NONE
+
 
 ---
 spring:

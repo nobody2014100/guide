@@ -4,7 +4,7 @@ spring:
   jackson:
     time-zone: GMT+8
   datasource:
-    url: jdbc:mysql://${MYSQL_SERVER:212.129.238.215}:${MYSQL_PORT:8888}/learn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://${MYSQL_SERVER:127.0.0.1}:${MYSQL_PORT:8888}/learn?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
     username: ENC(uSpU5irKuvMIT1mR0/2Whgh3EY9dRKwNKkZBNh2z20h4T8Le8SGPYBzC957M0hGS)
     password: ENC(Y5xuHdnuK897yMFWFJQA3ZFT7+Z4YCVvnp/st/SlgNw54YmOpD0qIYFBcmLry2Ks)
     hikari:

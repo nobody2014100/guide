@@ -50,7 +50,7 @@ show variables like "max_connections";
 ```
 ## 
 ```
-CREATE USER 'guide'@'%' IDENTIFIED BY 'root';
+CREATE USER 'guide'@'%' IDENTIFIED BY 'Z..li1zh@u1!!';
 
 GRANT ALL PRIVILEGES ON *.* TO 'guide'@'%' IDENTIFIED BY 'Z..li1zh@u1!!' WITH GRANT OPTION;
 FLUSH   PRIVILEGES;

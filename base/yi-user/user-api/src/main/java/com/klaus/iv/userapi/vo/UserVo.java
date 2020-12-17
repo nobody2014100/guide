@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,5 +31,7 @@ public class UserVo extends BaseVo {
     private String email;
     @ApiModelProperty(name = "userType", value = "zhangsan", notes = "名称")
     private int userType;
+    @ApiModelProperty(name = "roles", value = "{}", notes = "角色列表")
+    private List<RoleVo> roles;
 
 }

@@ -3,7 +3,7 @@ package com.klaus.iv.commonweb.constants;
 import lombok.Getter;
 
 @Getter
-public enum  ResultStatusCode {
+public enum  ResultStatusCode implements BasicError{
 
     OK("0", "OK"),
     HTTP_ERROR_100("100", "1XX错误"),

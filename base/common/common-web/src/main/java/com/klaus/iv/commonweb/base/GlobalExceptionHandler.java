@@ -2,7 +2,7 @@ package com.klaus.iv.commonweb.base;
 
 import com.klaus.iv.commonweb.R;
 import com.klaus.iv.commonweb.constants.ResultStatusCode;
-import com.klaus.iv.commonweb.exception.BizException;
+import com.klaus.iv.commonweb.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.bind.BindException;
 import org.springframework.http.HttpStatus;
@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Throwable.class)
     public ResponseEntity handleException(Throwable e) {
         log.error("服务运行异常", e);
-        if (e instanceof BizException) {
+        if (e instanceof BaseException) {
             return R.suc(ResultStatusCode.UNKNOWN_ERROR);
         }
         return R.suc(ResultStatusCode.UNKNOWN_ERROR);

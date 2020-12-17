@@ -15,11 +15,14 @@ import com.klaus.iv.useradmin.service.UserService;
 import com.klaus.iv.userapi.dto.UserDto;
 import com.klaus.iv.userapi.dto.UserRoleDto;
 import com.klaus.iv.userapi.dto.UserRolesDto;
+import com.klaus.iv.userapi.userdetails.CusUserDetails;
 import com.klaus.iv.userapi.vo.RoleVo;
 import com.klaus.iv.userapi.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.jooq.DSLContext;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +44,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
     private UserRoleRepo userRoleRepo;
 
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<RoleVo> findRolesByUserId(Long userId) {
@@ -50,6 +55,27 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
                 .where(USER.ID.equal(userId))
                 .fetch()
                 .map(record -> record.into(RoleVo.class));
+    }
+
+    @Override
+    public CusUserDetails findByUsername(String username) {
+
+        return null;
+    }
+
+    @Override
+    public CusUserDetails findByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public CusUserDetails findByMobile(String mobile) {
+        return null;
+    }
+
+    @Override
+    public CusUserDetails findByOpenID(String openID) {
+        return null;
     }
 
     @Override
@@ -69,6 +95,16 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 
     @Override
     public <D extends BaseDto> User converterToEntity(D dto) {
+        UserDto userDto = (UserDto)dto;
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         return new UserDtoConverter().converterFromDto((UserDto) dto);
+    }
+
+
+    private CusUserDetails toCusUserDetails(User user) {
+        CusUserDetails userDetails = new CusUserDetails();
+        userDetails.setRoles(this.findRolesByUserId(user.getId()));
+        BeanUtils.copyProperties(userDetails, user);
+        return  userDetails;
     }
 }

@@ -99,6 +99,7 @@
     <modules>
 
         <module>base</module>
+        <module>leetcode</module>
     </modules>
 
 </project>

@@ -2,11 +2,15 @@ package com.klaus.iv.commonweb;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.klaus.iv.commonweb.constants.BasicError;
 import com.klaus.iv.commonweb.constants.ResultStatusCode;
-import com.klaus.iv.commonweb.exception.BizException;
+import com.klaus.iv.commonweb.exception.BaseException;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 
@@ -41,19 +45,19 @@ public class R<T> {
         return R.suc(ResultStatusCode.OK, data);
     }
 
-    public static ResponseEntity<R> suc(ResultStatusCode statusCode) {
+    public static ResponseEntity<R> suc(BasicError statusCode) {
         return suc(statusCode, null);
     }
 
-    public static ResponseEntity<R> suc(ResultStatusCode statusCode, Object data) {
+    public static ResponseEntity<R> suc(BasicError statusCode, Object data) {
         return ResponseEntity.ok(new R(statusCode.getCode(), statusCode.getMsg(), data));
     }
 
-    public static ResponseEntity<R<Object>> fail(BizException bizException) {
-        return fail(bizException, null);
+    public static ResponseEntity<R<Object>> fail(BaseException baseException) {
+        return fail(baseException, null);
     }
 
-    public static ResponseEntity<R<Object>> fail(BizException baseException, Object data) {
+    public static ResponseEntity<R<Object>> fail(BaseException baseException, Object data) {
         return ResponseEntity.ok(new R<Object>(baseException.getCode(), baseException.getMsg(), data));
     }
 

@@ -29,6 +29,9 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
+
+
+
     @GetMapping("/{id}")
     @ApiOperation("根据Id获取用户信息")
     public ResponseEntity findById(@PathVariable("id") Long id) {
@@ -68,6 +71,24 @@ public class UserController extends BaseController {
         return R.suc(userService.addRoleToUser(userRolesDto));
     }
 
+    @GetMapping(value = "/user/email/{id}",produces = { "application/json;charset=UTF-8"})
+    public ResponseEntity<R> findByEmail(@PathVariable("email") String email) {
+        return R.suc(userService.findByEmail(email));
+    }
+
+    @GetMapping(value = "/user/mobile/{id}",produces = { "application/json;charset=UTF-8"})
+    public ResponseEntity<R> findByMobile(@PathVariable("mobile") String mobile) {
+        return R.suc(userService.findByMobile(mobile));
+    }
+
+    @GetMapping(value = "/user/username/{id}",produces = { "application/json;charset=UTF-8"})
+    public ResponseEntity<R> findByUsername(@PathVariable("username") String username) {
+        return R.suc(userService.findByUsername(username));
+    }
+    @GetMapping(value = "/user/open/{openID}",produces = { "application/json;charset=UTF-8"})
+    public ResponseEntity<R> findByOpenID(@PathVariable("openID") String openID) {
+        return R.suc(userService.findByOpenID(openID));
+    }
 
 
 

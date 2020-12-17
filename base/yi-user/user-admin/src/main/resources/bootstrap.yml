@@ -16,11 +16,23 @@ eureka:
     statusPageUrlPath: /actuator/info
     healthCheckUrlPath: /actuator/health
     hostname: 127.0.0.1
-  #    instance-id: ${spring.application.name}
+      instance-id: ${spring.application.name}
   client:
     fetch-registry: true
     service-url:
       defaultZone: http://${REGISTER_HOST_NAME:localhost}:${REGISTER_APP_PORT:3000}/eureka/
+
+feign:
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: FULL  # BASIC, FULL, HEADERS, NONE
 
 ###### spring-boot-actuator配置
 management:
@@ -43,22 +55,11 @@ management:
       exposure:
         include: "*"
         exclude: env,beans
-###### nacos(注册中心和配置中心)地址
-#spring.cloud.nacos.server-addr=192.168.28.130:8848
-##spring.cloud.nacos.username=nacos
-##spring.cloud.nacos.password=nacos
-#spring.cloud.nacos.config.file-extension=yml
-#spring.cloud.nacos.config.shared-dataids=common.yml
-#spring.cloud.nacos.config.refreshable-dataids=common.yml
-#
-###### spring-boot-actuator配置
-#management.endpoints.web.exposure.include=*
-#management.endpoint.health.show-details=always
-#
-###### 允许bean覆盖
+
 jasypt:
   encryptor:
     bootstrap: true
     password: zhouyi
-#    bean: capStringEncryptor
+
+###### 允许bean覆盖
 #spring.main.allow-bean-definition-overriding=true

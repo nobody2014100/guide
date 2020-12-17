@@ -54,6 +54,16 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.klaus.iv</groupId>
+            <artifactId>common-web</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.klaus.iv</groupId>
+            <artifactId>user-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

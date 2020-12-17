@@ -6,6 +6,8 @@ import org.jooq.conf.RenderNameStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
 
@@ -26,6 +28,11 @@ public class JpaConfig {
         log.info("------------------ invoke JooQHandle .............");
         //		去掉sql中的单引号
         dsl.settings().withRenderNameStyle(RenderNameStyle.AS_IS);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder()	{
+        return new BCryptPasswordEncoder();
     }
 }
 
