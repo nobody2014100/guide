@@ -26,7 +26,7 @@ public class BTree {
     }
 
     public static TreeNode sortedArrayToBST(List<Integer> data, int left, int right) {
-        if (right < 0 || left > right) {
+        if (right < left || left > right) {
             return null;
         }
         int mid = left + ((right-left) / 2);

@@ -19,10 +19,6 @@ public class TreeNode {
         PREV,MID,AFTER;
     }
 
-    public String toString () {
-        return nodeToString(this);
-    }
-
     public String nodeToString(TreeNode node) {
         StringBuilder data = new StringBuilder();
         data.append("\t"+ value+ "\n");
