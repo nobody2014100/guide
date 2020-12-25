@@ -26,4 +26,22 @@
         <module>yi-gateway</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
+                <artifactId>gateway-admin</artifactId>
+                <version>${gateway.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.klaus.iv</groupId>
+                <artifactId>gateway-api</artifactId>
+                <version>${gateway.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
 </project>

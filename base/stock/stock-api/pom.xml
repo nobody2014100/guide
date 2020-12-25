@@ -32,14 +32,14 @@
         </dependency>
         <dependency>
             <groupId>com.klaus.iv</groupId>
-            <artifactId>gateway-api</artifactId>
-            <version>${gateway.version}</version>
+            <artifactId>common-web</artifactId>
+            <version>${base.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.klaus.iv</groupId>
-            <artifactId>common-web</artifactId>
-            <version>0.0.1</version>
+            <artifactId>gateway-api</artifactId>
+            <version>${gateway.version}</version>
             <scope>compile</scope>
         </dependency>
 

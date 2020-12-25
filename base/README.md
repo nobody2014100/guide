@@ -4,6 +4,8 @@
 ```
 mvn clean package -DskipTests
 mvn clean install -DskipTests
+
+mvn dockerfile:build
 ```
 
 ## 持续集成

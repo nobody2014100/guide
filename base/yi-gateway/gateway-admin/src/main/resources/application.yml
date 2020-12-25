@@ -8,7 +8,7 @@ test:
 
 spring:
   application:
-    name: app-gateway
+    name: gateway-admin
   profiles:
     active: local
   cloud:
