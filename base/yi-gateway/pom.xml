@@ -4,26 +4,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.klaus.iv</groupId>
-        <artifactId>guide</artifactId>
-        <version>${app.version}</version>
+        <artifactId>base</artifactId>
+        <version>${base.version}</version>
     </parent>
     <groupId>com.klaus.iv</groupId>
-    <artifactId>base</artifactId>
-    <name>base</name>
-    <version>${base.version}</version>
+    <artifactId>yi-gateway</artifactId>
+    <version>${gateway.version}</version>
+    <name>yi-gateway</name>
     <description>Demo project for Spring Boot</description>
-    <packaging>pom</packaging>
-    <modules>
-        <module>codegen</module>
-        <module>common</module>
-        <module>yi-base-starter</module>
-        <module>app-user</module>
-        <module>app-admin</module>
-        <module>app-register</module>
-        <module>stock</module>
-        <module>yi-user</module>
-        <module>yi-learn</module>
-        <module>yi-gateway</module>
-    </modules>
 
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>gateway-admin</module>
+        <module>gateway-api</module>
+    </modules>
 </project>

@@ -25,7 +25,7 @@ public class User extends BasePo {
     @Getter
     public static enum UserType {
         MOBILE(0),ACCOUNT(1),WECHAT(2), QQ(3),
-        GITHUB(4), EMAIL(5),OSS(6), OTHER(7);
+        GITHUB(4), EMAIL(5),OSS(6), OTHER(7), ROBOT(8);
         private int value;
         private UserType(int value) {
             this.value = value;
