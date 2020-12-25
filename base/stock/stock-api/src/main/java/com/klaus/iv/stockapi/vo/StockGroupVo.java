@@ -1,5 +1,6 @@
 package com.klaus.iv.stockapi.vo;
 
+import com.klaus.iv.commonbase.model.vo.BaseVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "股票分组实体VO")
-public class StockGroupVo {
+public class StockGroupVo extends BaseVo {
     @ApiModelProperty(name = "groupCode", dataType = "String", value = "中金股份")
     private String groupCode;
     @ApiModelProperty(name = "stockCode", dataType = "String", value = "600787")

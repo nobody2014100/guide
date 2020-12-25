@@ -25,6 +25,7 @@
         <spring.cloud-version>Hoxton.SR6</spring.cloud-version>
         <docker.image.prefix>klaus</docker.image.prefix>
         <yogurt.version>2.0.1-SNAPSHOT</yogurt.version>
+        <easy-rule.version>3.4.0</easy-rule.version>
     </properties>
 
     <dependencies>

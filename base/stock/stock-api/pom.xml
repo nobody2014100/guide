@@ -24,6 +24,12 @@
             <version>1.6.1</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.klaus.iv</groupId>
+            <artifactId>common-base</artifactId>
+            <version>${base.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 </project>

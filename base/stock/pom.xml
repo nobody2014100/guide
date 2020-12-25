@@ -18,6 +18,7 @@
     <modules>
         <module>stock-api</module>
         <module>stock-admin</module>
+        <module>stock-spider</module>
     </modules>
 
     <dependencyManagement>
