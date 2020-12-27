@@ -59,6 +59,8 @@ public class StockServiceImpl implements StockService {
     public void save(StockDto stockDto) {
         YiStock yiStock = new StockDtoConverter().converterFromDto(stockDto);
         log.info("yiStock is :{}, stockDto is :{}", yiStock, stockDto);
-        stockRepo.save(yiStock);
+        if (!stockRepo.existsDistinctByCode(stockDto.getCode())) {
+            stockRepo.save(yiStock);
+        }
     }
 }

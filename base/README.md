@@ -4,8 +4,7 @@
 ```
 mvn clean package -DskipTests
 mvn clean install -DskipTests
-
-mvn dockerfile:build
+mvn clean package -Ddockerfile.skip
 ```
 
 ## 持续集成
@@ -50,3 +49,12 @@ mvn dockerfile:build
 - 权限认证
 - 股票管理后台
 - 股票数据爬取
+
+## 生产部署
+### docker 版本
+- app register
+```
+docker run --rm --name test-register --env PROFILE=local niklausjulie/guide/app-register:0.0.1
+
+
+```  

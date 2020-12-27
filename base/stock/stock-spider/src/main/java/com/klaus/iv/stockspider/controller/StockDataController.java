@@ -4,8 +4,8 @@ package com.klaus.iv.stockspider.controller;
 import com.klaus.iv.commonbase.util.CommonConstants;
 import com.klaus.iv.commonweb.R;
 import com.klaus.iv.commonweb.base.BaseController;
-import com.klaus.iv.stockspider.dto.StockDto;
-import com.klaus.iv.stockspider.dto.StockVo;
+import com.klaus.iv.stockapi.dto.StockDto;
+import com.klaus.iv.stockapi.feign.StockClient;
 import com.klaus.iv.stockspider.facade.StockFacade;
 import com.klaus.iv.stockspider.utils.RestTemplateUtils;
 import com.klaus.iv.stockspider.utils.StockComputeUtil;
@@ -15,13 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -30,10 +24,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.klaus.iv.stockspider.constants.NetEaseApi.EASTMONEY_STOCKS_URL;
-import static com.klaus.iv.stockspider.constants.NetEaseApi.REDIS_STOCK_CODE_SET_ALL;
-import static com.klaus.iv.stockspider.constants.NetEaseApi.REDIS_STOCK_CODE_SET_GUIDE_ERROR;
-import static com.klaus.iv.stockspider.constants.NetEaseApi.REDIS_STOCK_CODE_SET_SELF_CHOOSE;
+import static com.klaus.iv.stockspider.constants.NetEaseApi.*;
 import static com.klaus.iv.stockspider.utils.StockComputeUtil.getStockRedisRealtimeKey;
 import static org.springframework.web.client.HttpClientErrorException.NotFound;
 
@@ -54,6 +45,9 @@ public class StockDataController extends BaseController {
 
     @Autowired
     private StockFacade stockFacade;
+
+    @Autowired
+    private StockClient stockClient;
 
 
 //    @Value("${spring.kafka.topic}")
@@ -101,7 +95,7 @@ public class StockDataController extends BaseController {
      * @return
      */
     @GetMapping("/guide")
-    @ApiOperation(value = "guide", tags = {"guide", "指导"})
+    @ApiOperation(value = "guide", tags = {"guide"})
     public ResponseEntity guide(@RequestParam("stockCode") String stockCode, @RequestParam("days") int days) {
         log.info("stockCode is :{}", stockCode);
         try {
@@ -119,46 +113,8 @@ public class StockDataController extends BaseController {
         return R.suc(result);
     }
 
-    @PostMapping()
-    @ApiOperation(value = "add", notes = "JSON实时数据")
-    public ResponseEntity add(@RequestBody StockDto stockDto) {
-        stockDto.getCode().forEach(
-                code -> {
-                    redisTemplate.opsForSet().add(REDIS_STOCK_CODE_SET_SELF_CHOOSE, code);
-                }
-        );
-        return R.suc(true);
-    }
 
 
-
-
-
-
-    @GetMapping("/topics")
-    @ApiOperation(value = "getAllTopics", notes = "JSON实时数据")
-    public ResponseEntity getAllTopics() {
-
-//        Collection<String> topicListings = new ArrayList<>();
-//        ListTopicsResult listTopicsResult = adminClient.listTopics();
-
-//        log.info("listTopicsResult.names() is :{}", listTopicsResult.names());
-//        if (true) {
-//            KafkaFuture<Collection<TopicListing>> kafkaFuture = listTopicsResult.listings();
-//            kafkaFuture.whenComplete(
-//                    (a,b) -> {
-//                        a.forEach( i -> {
-//                            topicListings.add(i.name());
-//                            log.info("topic is :{}", i.name());
-//                        });
-//                    }
-//
-//            );
-//            return toResonpseEntity(topicListings, null);
-//        }
-        return R.suc(true);
-
-    }
 
     @GetMapping("/sync")
     @ApiOperation(value = "syncData", notes = "临时同步数据")
@@ -220,15 +176,18 @@ public class StockDataController extends BaseController {
         List<HashMap> dataNodes = (List<HashMap>) datas.get("diff");
         log.info("data size is:{}", dataNodes.size());
 
-        dataNodes.stream().map(node -> {
-            StockVo stockVo = new StockVo();
-            stockVo.setCode((String) node.get("f12"));
-            stockVo.setName((String) node.get("f14"));
-            return stockVo;
-        })
-            .map(node -> node.getCode())
+        dataNodes.stream()
+            .map(node -> {
+                StockDto stockDto = new StockDto();
+                stockDto.setCode((String) node.get("f12"));
+                stockDto.setName((String) node.get("f14"));
+                return stockDto;
+            })
             .forEach(
-                    node -> redisTemplate.opsForSet().add(REDIS_STOCK_CODE_SET_ALL, node)
+                    node -> {
+                        redisTemplate.opsForSet().add(REDIS_STOCK_CODE_SET_ALL, node.getCode());
+                        stockClient.save(node);
+                    }
             );
         return ResponseEntity.ok(true);
     }

@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:mysql://${MYSQL_SERVER:127.0.0.1}:${MYSQL_PORT:8888}/user_center?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
 #    username: guide
-#    password: Z..li1zh@u1!!
+#    password: Z..li1zh@u1!
     username: ENC(uSpU5irKuvMIT1mR0/2Whgh3EY9dRKwNKkZBNh2z20h4T8Le8SGPYBzC957M0hGS)
     password: ENC(Y5xuHdnuK897yMFWFJQA3ZFT7+Z4YCVvnp/st/SlgNw54YmOpD0qIYFBcmLry2Ks)
     hikari:

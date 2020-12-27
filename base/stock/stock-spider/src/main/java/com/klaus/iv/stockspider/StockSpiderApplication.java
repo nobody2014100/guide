@@ -1,13 +1,15 @@
-package com.klaus.iv.stockspider.config;
+package com.klaus.iv.stockspider;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -16,6 +18,8 @@ import java.util.HashMap;
 @RestController
 @Slf4j
 @EnableDiscoveryClient
+@EnableOpenApi
+@EnableFeignClients(basePackages = {"com.klaus.iv.stockapi.feign"})
 public class StockSpiderApplication {
 
     public static void main(String[] args) {

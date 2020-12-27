@@ -81,11 +81,7 @@
             <artifactId>stock-api</artifactId>
             <version>${stock.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.klaus.iv</groupId>
-            <artifactId>yi-swagger-starter</artifactId>
-            <version>${yi-base.version}</version>
-        </dependency>
+
     </dependencies>
 
     <build>

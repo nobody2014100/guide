@@ -1,6 +1,7 @@
 package com.klaus.iv.userauthserver.service.impl;
 
 import com.klaus.iv.userapi.feign.UserClient;
+import com.klaus.iv.userapi.userdetails.CusUserDetails;
 import com.klaus.iv.userapi.vo.UserVo;
 import com.klaus.iv.userauthserver.service.CusUserDetailService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,21 +19,22 @@ public class CusCusUserDetailServiceImpl implements CusUserDetailService {
     private UserClient userClient;
 
     @Override
-    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+    public CusUserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
 
-        ResponseEntity<UserVo>  userVo = userClient.findByEmail(email);
+        ResponseEntity<CusUserDetails>  userDetailsResponseEntity = userClient.findByEmail(email);
 
-        return null;
+        return userDetailsResponseEntity.getBody();
     }
 
     @Override
-    public UserDetails loadUserByMobile(String mobile) throws UsernameNotFoundException {
-        return null;
+    public CusUserDetails loadUserByMobile(String mobile) throws UsernameNotFoundException {
+        ResponseEntity<CusUserDetails> userDetailsResponseEntity = userClient.findByMobile(mobile);
+        return userDetailsResponseEntity.getBody();
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ResponseEntity<UserVo> userVo = userClient.findByUsername(username);
-        return null;
+    public CusUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        ResponseEntity<CusUserDetails> userDetailsResponseEntity = userClient.findByUsername(username);
+        return userDetailsResponseEntity.getBody();
     }
 }

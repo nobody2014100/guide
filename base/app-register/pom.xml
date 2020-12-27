@@ -62,17 +62,21 @@
                         <phase>package</phase>
                         <goals>
                             <goal>build</goal>
-                            <goal>push</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-                    <repository>${docker-prefix}/guide/${project.name}</repository>
+                    <repository>${docker.prefix}/${project.name}</repository>
                     <tag>${project.version}</tag>
+
                     <buildArgs>
+                        <APPLICATION_NAME>${project.name}</APPLICATION_NAME>
+                        <BASE_IMAGE>${docker.baseImage}</BASE_IMAGE>
                         <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                        <JAVA_PARAMS>${docker.java.opts}</JAVA_PARAMS>
                     </buildArgs>
+
                 </configuration>
 
             </plugin>

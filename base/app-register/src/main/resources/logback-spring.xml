@@ -4,7 +4,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
     <property name="APP_NAME" value="app-register"/>
-    <property name="LOG_HOME" value="/app/logs/appregister"/>
+    <property name="LOG_HOME" value="~/app/logs/appregister"/>
     <property name="ENCODER_PATTERN"
               value="[%thread]%date{yyyy-MM-dd HH:mm:ss.SSS}|[%-4relative]| %-5.5level |%-32.32logger{36} | %message%n"/>
     <property name="MAX_HISTORY" value="30"/>

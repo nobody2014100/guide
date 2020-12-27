@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 
-@Data
-@ConfigurationProperties(prefix = "yi.swagger")
-@Component
+//@Data
+//@ConfigurationProperties(prefix = "yi.swagger")
+//@Component
 public class SwaggerProperties {
 
     /**是否开启swagger**/

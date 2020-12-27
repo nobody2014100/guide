@@ -4,7 +4,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
     <property name="APP_NAME" value="gateway-admin"/>
-    <property name="LOG_HOME" value="/app/logs/gatewayadmin"/>
+    <property name="LOG_HOME" value="~/app/logs/gatewayadmin"/>
     <property name="MAX_HISTORY" value="30"/>
     <property name="MAX_FILE_SIZE" value="100MB"/>
 
