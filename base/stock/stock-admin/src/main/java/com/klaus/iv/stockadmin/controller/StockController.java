@@ -5,6 +5,7 @@ import com.klaus.iv.commonweb.R;
 import com.klaus.iv.commonweb.base.BaseController;
 import com.klaus.iv.stockadmin.service.StockService;
 import com.klaus.iv.stockapi.dto.StockDto;
+import com.klaus.iv.stockapi.qo.StockQo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -32,8 +33,8 @@ public class StockController extends BaseController {
 
     @GetMapping
     @ApiOperation(value = "获取股票列表")
-    public ResponseEntity<R> list() {
-        return R.suc(stockService.findPage(PageRequest.of(0,10)));
+    public ResponseEntity<R> list(@RequestBody StockQo stockQo) {
+        return R.suc(stockService.search(stockQo));
     }
 
     @GetMapping("/{id}")
