@@ -1,6 +1,50 @@
 # issue record
 
 
+
+## docker 中文乱码问题
+```
+1. 先将docker配置文件下载到本地
+
+docker cp guide-mysql:/etc/mysql/mysql.conf.d/mysqld.cnf .
+
+2. 修改字符集相关的配置
+
+[mysqld]
+pid-file	= /var/run/mysqld/mysqld.pid
+socket		= /var/run/mysqld/mysqld.sock
+datadir		= /var/lib/mysql
+#log-error	= /var/log/mysql/error.log
+# By default we only accept connections from localhost
+#bind-address	= 127.0.0.1
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+character-set-server=utf8
+init_connect='SET NAMES utf8'
+
+[mysql.server]
+default-character-set = utf8
+
+[mysqld_safe]
+default-character-set = utf8
+
+[client]
+default-character-set = utf8
+
+3. 替换远端的mysql配置
+docker cp mysqld.cnf guide-mysql:/etc/mysql/mysql.conf.d
+
+```
+
+
+## springboot项目启动时:Failed to retrieve application JMX service URL
+```textmate
+application.properties配置有问题,检查即可
+
+问题原因是配置文件有有一行配置缩进有问题导致的
+
+```
+
 ## jooq 生存的sql带双引号
 ```
     @PostConstruct
@@ -24,7 +68,7 @@
 
 ```
 ## you have not installed the Java Cryptography Extension (JCE)
-```hql
+```
 https://blog.csdn.net/andyguan01_2/article/details/88343641
 
 1、打开以下网址，下载JCE压缩包：
@@ -48,7 +92,7 @@ show variables like "max_connections";
  wait_timeout=200
 
 ```
-## 
+## 创建mysql 用户， 并授权
 ```
 CREATE USER 'guide'@'%' IDENTIFIED BY 'Z..li1zh@u1!!';
 

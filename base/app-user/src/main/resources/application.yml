@@ -64,12 +64,12 @@ spring:
   profiles: local
   devtools:
     livereload:
-      port: ${DEV_TOOLS_PORT:42000}
+      port: ${DEV_TOOLS_PORT:22000}
 management:
   server:
-    port: ${MANAGEMENT_PORT:41000}
+    port: ${MANAGEMENT_PORT:21000}
 server:
-  port: ${APP_PORT:4000}
+  port: ${APP_PORT:2000}
 
 ---
 spring:

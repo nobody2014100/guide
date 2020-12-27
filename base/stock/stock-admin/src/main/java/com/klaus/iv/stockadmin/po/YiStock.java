@@ -15,4 +15,6 @@ public class YiStock extends BasePo {
     private String name;
     private String code;
     private String stockDesc;
+
+    private int status;
 }

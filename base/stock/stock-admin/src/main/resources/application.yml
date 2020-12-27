@@ -27,7 +27,7 @@ spring:
     port: 7777
     database: 0
     host: 127.0.0.1
-  #    password: C..liizhou1!!
+#    password: C..liizhou1!!
 #    password: ENC(EY7Y4OEBEg5n/nZdeNYO1FEBAbGWrehdKyTzHNak3g3zRLFxw0BWajW6TDz0JX/K)
   jpa:
     show-sql: true
@@ -41,7 +41,7 @@ eureka:
     statusPageUrlPath: /actuator/info
     healthCheckUrlPath: /actuator/health
     hostname: 127.0.0.1
-      instance-id: ${spring.application.name}
+    instance-id: ${spring.application.name}
   client:
     fetch-registry: true
     service-url:

@@ -54,7 +54,7 @@ eureka:
     statusPageUrlPath: /actuator/info
     healthCheckUrlPath: /actuator/health
     hostname: 127.0.0.1
-      instance-id: ${spring.application.name}
+    instance-id: ${spring.application.name}
   client:
     fetch-registry: true
     service-url:
@@ -111,7 +111,7 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: FULL  # BASIC, FULL, HEADERS, NONE
-debug: true
+
 ---
 spring:
   profiles: local
