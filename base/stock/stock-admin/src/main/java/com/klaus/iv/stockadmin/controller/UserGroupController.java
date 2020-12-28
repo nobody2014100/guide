@@ -26,7 +26,7 @@ public class UserGroupController extends BaseController {
     @GetMapping
     @ApiOperation(value = "获取用户分组列表")
     public ResponseEntity<R> list() {
-        return R.suc(userGroupService.findPage(PageRequest.of(0,10)));
+        return R.suc(userGroupService.findAllWithPage(PageRequest.of(0,10)));
     }
 
     @GetMapping("/{id}")

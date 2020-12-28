@@ -11,7 +11,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +30,9 @@ public class StockController extends BaseController {
     @Autowired
     private StockService stockService;
 
-    @GetMapping
+    @PostMapping("/search")
     @ApiOperation(value = "获取股票列表")
+    @ApiImplicitParam(name = "stockQo", value = "请按照模型输入搜索参数",required = true, dataTypeClass = StockQo.class, paramType = "body")
     public ResponseEntity<R> list(@RequestBody StockQo stockQo) {
         return R.suc(stockService.search(stockQo));
     }

@@ -15,8 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,7 +29,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.klaus.iv.stockspider.constants.NetEaseApi.*;
+import static com.klaus.iv.stockspider.constants.NetEaseApi.EASTMONEY_STOCKS_URL;
+import static com.klaus.iv.stockspider.constants.NetEaseApi.REDIS_STOCK_CODE_SET_ALL;
+import static com.klaus.iv.stockspider.constants.NetEaseApi.REDIS_STOCK_CODE_SET_GUIDE_ERROR;
 import static com.klaus.iv.stockspider.utils.StockComputeUtil.getStockRedisRealtimeKey;
 import static org.springframework.web.client.HttpClientErrorException.NotFound;
 
@@ -186,7 +193,11 @@ public class StockDataController extends BaseController {
             .forEach(
                     node -> {
                         redisTemplate.opsForSet().add(REDIS_STOCK_CODE_SET_ALL, node.getCode());
-                        stockClient.save(node);
+                        try {
+                            stockClient.save(node);
+                        }  catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
             );
         return ResponseEntity.ok(true);

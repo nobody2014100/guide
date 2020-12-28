@@ -6,8 +6,8 @@ spring:
     name: ${APP_NAME:stock-spider}
   profiles:
     active: local
-#  jmx:
-#    enabled: true
+  jmx:
+    enabled: true
   jackson:
     time-zone: GMT+8
 #  datasource:
@@ -29,9 +29,11 @@ spring:
 #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 #    database: mysql
   redis:
-    host: 127.0.0.1
+    #    host: 111.231.215.20
     port: 7777
     database: 0
+    host: 127.0.0.1
+    password: C..liizhou1!
 #    password: ENC(EY7Y4OEBEg5n/nZdeNYO1FEBAbGWrehdKyTzHNak3g3zRLFxw0BWajW6TDz0JX/K)
   mail:
     host: smtp.126.com

@@ -26,7 +26,7 @@ public class StockGroupController extends BaseController {
     @GetMapping
     @ApiOperation(value = "获取股票分组列表")
     public ResponseEntity<R> list() {
-        return R.suc(stockGroupService.findPage(PageRequest.of(0,10)));
+        return R.suc(stockGroupService.findAllWithPage(PageRequest.of(0,10)));
     }
 
     @GetMapping("/{id}")

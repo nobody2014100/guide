@@ -1,21 +1,22 @@
 package com.klaus.iv.stockadmin.service;
 
-import com.klaus.iv.stockapi.dto.StockDto;
+import com.klaus.iv.commonjpa.service.BaseService;
+import com.klaus.iv.stockadmin.po.YiStock;
 import com.klaus.iv.stockapi.qo.StockQo;
 import com.klaus.iv.stockapi.vo.StockVo;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface StockService {
+public interface StockService extends BaseService<YiStock, Long> {
 
 
-    Page<StockVo> findPage(Pageable pageable);
-    StockVo findById(Long id);
+    /**
+     *
+     * @param userId
+     * @param groupId
+     * @return
+     */
     List<StockVo> findByUserIdAndGroupId(Long userId, Long groupId);
-    void deleteById(Long id);
-    void save(StockDto stockDto);
 
     /**
      * search by name and code

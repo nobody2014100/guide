@@ -5,11 +5,13 @@ import com.klaus.iv.commonbase.model.vo.BaseVo;
 import com.klaus.iv.commonjpa.po.BasePo;
 import com.klaus.iv.commonjpa.repo.BaseRepo;
 import com.klaus.iv.commonjpa.service.BaseService;
+import lombok.extern.slf4j.Slf4j;
 import org.jooq.DSLContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,11 +21,12 @@ import java.util.stream.Collectors;
  * @param <T>
  * @param <E>
  */
+@Slf4j
 public abstract class BaseServiceImpl<T extends BasePo, E> implements BaseService<T, E> {
     protected DSLContext dsl;
     protected BaseRepo<T, E> baseRepo;
 
-    public BaseServiceImpl(DSLContext dsl, BaseRepo baseRepo) {
+    public BaseServiceImpl(DSLContext dsl, BaseRepo<T,E> baseRepo) {
         this.dsl = dsl;
         this.baseRepo = baseRepo;
     }
@@ -39,7 +42,15 @@ public abstract class BaseServiceImpl<T extends BasePo, E> implements BaseServic
 
     @Override
     public <D extends BaseDto> void save(D dto) {
-        baseRepo.save(converterToEntity(dto));
+        try {
+            baseRepo.save(converterToEntity(dto));
+        } catch (Exception e) {
+            if (e instanceof SQLIntegrityConstraintViolationException) {
+                log.error("error is :{}", e.getMessage());
+            } else {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -73,7 +84,7 @@ public abstract class BaseServiceImpl<T extends BasePo, E> implements BaseServic
         return   baseRepo.findAll(pageable);
     }
 
-    public abstract <V extends BaseVo> V converterToVo(T t);
+    protected abstract <V extends BaseVo> V converterToVo(T t);
 
-    public abstract <D extends BaseDto> T converterToEntity(D dto);
+    protected abstract <D extends BaseDto> T converterToEntity(D dto);
 }

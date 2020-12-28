@@ -40,6 +40,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
     public UserServiceImpl(DSLContext dsl, UserRepo userRepo) {
         super(dsl, userRepo);
     }
+
     @Autowired
     private UserRoleRepo userRoleRepo;
 

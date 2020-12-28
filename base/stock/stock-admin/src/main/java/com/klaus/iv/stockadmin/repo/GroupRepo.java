@@ -1,9 +1,9 @@
 package com.klaus.iv.stockadmin.repo;
 
+import com.klaus.iv.commonjpa.repo.BaseRepo;
 import com.klaus.iv.stockadmin.po.YiGroup;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GroupRepo extends JpaRepository<YiGroup,Long > {
+public interface GroupRepo extends BaseRepo<YiGroup,Long > {
 
 
 }

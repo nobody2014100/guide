@@ -1,9 +1,12 @@
 package com.klaus.iv.stockadmin.po;
 
 import com.klaus.iv.commonjpa.po.BasePo;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.Table;
@@ -15,7 +18,7 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 @Entity
 @Table(indexes = {
-        @Index(name = "index_name", columnList = "name", unique = true),
+        @Index(name = "index_name", columnList = "name", unique = false),
         @Index(name = "index_code", columnList = "code", unique = true)
 })
 public class YiStock extends BasePo {

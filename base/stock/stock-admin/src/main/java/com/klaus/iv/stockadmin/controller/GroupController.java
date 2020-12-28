@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.*;
 public class GroupController extends BaseController {
 
     @Autowired
-    private GroupService stockService;
+    private GroupService groupService;
 
     @GetMapping
     @ApiOperation(value = "获取分组列表")
     public ResponseEntity<R> list() {
-        return R.suc(stockService.findPage(PageRequest.of(0,10)));
+        return R.suc(groupService.findAllWithPage(PageRequest.of(0,10)));
     }
 
     @GetMapping("/{id}")
@@ -34,7 +34,7 @@ public class GroupController extends BaseController {
     @ApiImplicitParam(name = "id", value = "请传递一个分组ID参数",required = true, dataTypeClass = Integer.class, paramType = "path")
     public ResponseEntity<R> findByID(@PathVariable("id") Long id) {
         log.info("id is:{}", id);
-        return R.suc(stockService.findById(id));
+        return R.suc(groupService.findById(id));
     }
 
     @DeleteMapping("/{id}")
@@ -42,7 +42,7 @@ public class GroupController extends BaseController {
     @ApiImplicitParam(name = "id", value = "请传递一个分组ID参数",required = true, dataTypeClass = Integer.class, paramType = "path")
     public ResponseEntity<R> deleteByID(@PathVariable("id") Long id) {
         log.info("id is:{}", id);
-        stockService.deleteById(id);
+        groupService.deleteById(id);
         return  R.suc(true);
     }
 
@@ -51,7 +51,7 @@ public class GroupController extends BaseController {
     @ApiImplicitParam(name = "groupDto", value = "分组实体DTO",defaultValue = "{}",required = true, dataTypeClass = GroupDto.class, paramType = "body")
     public ResponseEntity<R> save(@RequestBody GroupDto groupDto) {
         log.info("groupDto is:{}", groupDto);
-        stockService.save(groupDto);
+        groupService.save(groupDto);
         return  R.suc(true);
     }
 

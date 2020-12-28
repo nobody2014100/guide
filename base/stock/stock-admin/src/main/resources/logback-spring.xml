@@ -71,6 +71,7 @@
     <logger name="org.springframework" level="info"/>
     <logger name="com.klaus.iv" level="debug"/>
     <logger name="org.jooq" level="DEBUG"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
 
     <springProfile name="prod">
         <root level="error">

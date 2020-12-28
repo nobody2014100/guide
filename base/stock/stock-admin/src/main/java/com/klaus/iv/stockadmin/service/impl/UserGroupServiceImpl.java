@@ -1,5 +1,7 @@
 package com.klaus.iv.stockadmin.service.impl;
 
+import com.klaus.iv.commonbase.model.dto.BaseDto;
+import com.klaus.iv.commonjpa.service.impl.BaseServiceImpl;
 import com.klaus.iv.stockadmin.converter.UserGroupDtoConverter;
 import com.klaus.iv.stockadmin.converter.UserGroupVoConverter;
 import com.klaus.iv.stockadmin.po.UserGroup;
@@ -8,49 +10,30 @@ import com.klaus.iv.stockadmin.service.UserGroupService;
 import com.klaus.iv.stockapi.dto.UserGroupDto;
 import com.klaus.iv.stockapi.vo.UserGroupVo;
 import lombok.extern.slf4j.Slf4j;
+import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class UserGroupServiceImpl implements UserGroupService {
+public class UserGroupServiceImpl extends BaseServiceImpl<UserGroup, Long> implements UserGroupService {
 
     @Autowired
     private UserGroupRepo userGroupRepo;
 
-    @Override
-    public Page<UserGroupVo> findPage(Pageable pageable) {
-        Page<UserGroup> page = userGroupRepo.findAll(pageable);
-        List<UserGroupVo> contents = page.getContent().stream().map(i -> new UserGroupVoConverter().converterFromEntity(i)).collect(Collectors.toList());
-        Page<UserGroupVo> stockVos = Page.empty();
-        return stockVos;
-
+    public UserGroupServiceImpl(DSLContext dsl, UserGroupRepo userGroupRepo) {
+        super(dsl, userGroupRepo);
     }
 
     @Override
-    public UserGroupVo findById(Long id) {
-        Optional<UserGroup> stockPo = userGroupRepo.findById(id);
-        if (stockPo.isPresent()) {
-            return new UserGroupVoConverter().converterFromEntity(stockPo.get());
-        }
-        return null;
+    protected UserGroupVo converterToVo(UserGroup userGroup) {
+        return new UserGroupVoConverter().converterFromEntity(userGroup);
     }
 
     @Override
-    public void deleteById(Long id) {
-        userGroupRepo.deleteById(id);
+    protected  <D extends BaseDto> UserGroup converterToEntity(D dto) {
+        UserGroupDto userGroupDto = (UserGroupDto)dto;
+        return new UserGroupDtoConverter().converterFromDto((UserGroupDto) dto);
     }
 
-    @Override
-    public void save(UserGroupDto userGroupDto) {
-        UserGroup stock = new UserGroupDtoConverter().converterFromDto(userGroupDto);
-        log.info("stock is :{}, userGroupDto is :{}", stock, userGroupDto);
-        userGroupRepo.save(stock);
-    }
 }
