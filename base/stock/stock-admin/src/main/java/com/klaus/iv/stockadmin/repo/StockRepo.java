@@ -13,4 +13,6 @@ public interface StockRepo extends BaseRepo<YiStock,Long > {
 
     List<YiStock> findYiStocksByNameLike(String name);
 
+    void deleteYiStockByCode(String code);
+
 }

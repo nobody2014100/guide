@@ -77,8 +77,6 @@ public class StockScheduler {
             }
         });
         log.info("------------------computeGuide finished , total time use is:{}----------------------------", System.currentTimeMillis() - startTime);
-
-
     }
 
 

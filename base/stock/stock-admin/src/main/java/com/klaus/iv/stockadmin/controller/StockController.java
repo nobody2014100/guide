@@ -31,7 +31,7 @@ public class StockController extends BaseController {
     private StockService stockService;
 
     @PostMapping("/search")
-    @ApiOperation(value = "获取股票列表")
+    @ApiOperation(value = "搜索股票列表")
     @ApiImplicitParam(name = "stockQo", value = "请按照模型输入搜索参数",required = true, dataTypeClass = StockQo.class, paramType = "body")
     public ResponseEntity<R> list(@RequestBody StockQo stockQo) {
         return R.suc(stockService.search(stockQo));
@@ -54,12 +54,20 @@ public class StockController extends BaseController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "删除股票")
+    @ApiOperation(value = "根据ID删除股票")
     @ApiImplicitParam(name = "id", value = "请传递一个股票ID参数",required = true, dataTypeClass = Integer.class, paramType = "path")
     public ResponseEntity<R> deleteByID(@PathVariable("id") Long id) {
         log.info("id is:{}", id);
         stockService.deleteById(id);
         return  R.suc(true);
+    }
+
+    @DeleteMapping("/code/{code}")
+    @ApiOperation(value = "根据代码删除股票")
+    @ApiImplicitParam(name = "id", value = "请传递一个股票ID参数",required = true, dataTypeClass = Integer.class, paramType = "path")
+    public ResponseEntity<R> deleteByCode(@PathVariable("id") String code) {
+        log.info("code is:{}", code);
+        return  R.suc(stockService.deleteByCode(code));
     }
 
     @PostMapping

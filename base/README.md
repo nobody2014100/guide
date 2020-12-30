@@ -24,12 +24,12 @@ mvn clean package -Ddockerfile.skip
 
 
 ## process
-* 框架基本搭建
-* spring data jpa 融合
-* jooq 融合
-* redis 融合
-* mysql 融合
-* swagger 融合
+* 框架基本搭建   完成
+* spring data jpa 融合 完成
+* jooq 融合  完成
+* redis 融合  完成
+* mysql 融合  完成
+* swagger 融合   完成
 
 
 ## 工程化

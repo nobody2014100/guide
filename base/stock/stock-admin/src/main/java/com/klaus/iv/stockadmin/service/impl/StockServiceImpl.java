@@ -46,6 +46,12 @@ public class StockServiceImpl extends BaseServiceImpl<YiStock, Long> implements 
     }
 
     @Override
+    public Boolean deleteByCode(String code) {
+        stockRepo.deleteYiStockByCode(code);
+        return true;
+    }
+
+    @Override
     public List<StockVo> findByUserIdAndGroupId(Long userId, Long groupId) {
         return this.dsl.select(YI_STOCK.NAME,YI_STOCK.CODE,YI_STOCK.STOCK_DESC).from(YI_STOCK).join(STOCK_GROUP).on(YI_STOCK.CODE.eq(STOCK_GROUP.STOCK_CODE))
                 .join(YI_GROUP).on(STOCK_GROUP.GROUP_CODE.eq(YI_GROUP.CODE))

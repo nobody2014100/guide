@@ -9,6 +9,12 @@ import java.util.List;
 
 public interface StockService extends BaseService<YiStock, Long> {
 
+    /**
+     *
+     * @param code
+     * @return
+     */
+    Boolean deleteByCode(String code);
 
     /**
      *
