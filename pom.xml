@@ -114,7 +114,6 @@
 
         <module>base</module>
         <module>leetcode</module>
-        <module>analyse-ip</module>
     </modules>
 
 </project>
